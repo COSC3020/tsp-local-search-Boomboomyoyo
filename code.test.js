@@ -1,5 +1,5 @@
 const fs = require('fs');
-const jsc = require('jsverify');
+//const jsc = require('jsverify');
 const assert = require('assert');
 
 eval(fs.readFileSync('code.js')+'');
@@ -7,28 +7,25 @@ temp = Infinity
 
 
 dm = [[]];
-temp = tsp_ls(dm)
 //console.log(temp)
-assert(temp == 0);
+assert(tsp_ls(dm) == 0);
 
 dm = [[0]];
-temp = tsp_ls(dm)
 //console.log(temp)
-assert(temp == 0);
+assert(tsp_ls(dm) == 0);
 
 dm = [[0,0,0],
       [0,0,0],
       [0,0,0]];
-      temp = tsp_ls(dm)
       //console.log(temp)
-assert(temp == 0);
+assert(tsp_ls(dm) == 0);
 
 dm = [[0,1,2],
       [1,0,2],
       [2,2,0]];
-      temp = tsp_ls(dm)
+
       //console.log(temp)
-assert(temp >= 3);
+assert(tsp_ls(dm) >= 3);
 
 // https://people.sc.fsu.edu/~jburkardt/datasets/tsp/tsp.html
 dm = [[0,3,4,2,7],
@@ -36,9 +33,8 @@ dm = [[0,3,4,2,7],
       [4,4,0,5,8],
       [2,6,5,0,6],
       [7,3,8,6,0]];
-      temp = tsp_ls(dm)
       //console.log(temp)
-assert(temp >= 13);
+assert(tsp_ls(dm) >= 13);
 
 /*
 const test =
@@ -70,7 +66,7 @@ const test =
 jsc.assert(test, { tests: 10 });
 */
 
-
+/*
 function connectedGraph(v)
 {
     graph = []
@@ -142,4 +138,4 @@ function connectedGraph2(v, e, graph, connectedNodes = [0])
 function randomElementRange(n) 
 {
     return Math.floor(Math.random()*n)
-}
+}*/
