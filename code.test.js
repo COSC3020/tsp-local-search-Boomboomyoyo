@@ -5,7 +5,7 @@ const assert = require('assert');
 eval(fs.readFileSync('code.js')+'');
 temp = Infinity
 
-/*
+
 dm = [[]];
 temp = tsp_ls(dm)
 //console.log(temp)
@@ -38,33 +38,34 @@ dm = [[0,3,4,2,7],
       [7,3,8,6,0]];
       temp = tsp_ls(dm)
       //console.log(temp)
-assert(temp >= 13);*/
+assert(temp >= 13);
 
 
 const test =
     jsc.forall("nat", function(int) {
-        graph = connectedGraph(Math.max(int, 2))
-        for(let i = 0; i < graph.length; i++)
-        {
-            for(let j = 0; j < graph.length; j++)
+      graphSize = Math.min(25, int)
+      graph = connectedGraph(Math.max(graphSize, 2))
+      for(let i = 0; i < graph.length; i++)
+      {
+      for(let j = 0; j < graph.length; j++)
+      {
+            if(graph[i][j] == 0)
             {
-                  if(graph[i][j] == 0)
-                  {
-                        graph[i][j] = 1
-                  }
-                  if(graph[i][j] == 1)
-                  {
-                        let weight = Math.max(Math.floor(Math.random()*9),2)
-                        graph[i][j] = weight
-                        graph[j][i] = weight
-                  }
+                  graph[i][j] = 1
             }
-        }
-        console.log("Test Session: " + graph.length)
-        //console.log(graph)
-        tempy = tsp_ls(graph)
-        console.log(tempy)
-        return true
+            if(graph[i][j] == 1)
+            {
+                  let weight = Math.max(Math.floor(Math.random()*9),2)
+                  graph[i][j] = weight
+                  graph[j][i] = weight
+            }
+      }
+      }
+      console.log("Test Session: " + graph.length)
+      //console.log(graph)
+      tempy = tsp_ls(graph)
+      console.log(tempy)
+      return true
     });
 jsc.assert(test, { tests: 10 });
 

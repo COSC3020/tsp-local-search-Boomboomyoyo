@@ -5,7 +5,7 @@ function tsp_ls(distance_matrix) {
         path.push(i)
     }
     shuffleArray(path)
-    totalAttempts = path.length ** 4
+    totalAttempts = path.length ** 3
     previousLength = Infinity
     pathLength = Infinity
     for(let c = 0; c < totalAttempts; c++)

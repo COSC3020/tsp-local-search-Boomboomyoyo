@@ -54,7 +54,7 @@ reasoning, to this markdown file.
 
 
 # Response
-Got this done now, I think. Conferring with classmates, I settled on my ending condition being to run the randomized path portion of the algorithm a number of times related to the size of the input. I tested values from $|V|^2$ to $|V|^9$, and the algorithm didn't seem to got a relatively better answer with acceptable runtime up to input size 37. I generated weights on my graphs of between 2-8, so the average path length would be about 5. It would be a little more because the the two is three times as heavily weighted as the other numbers, as I'm actually taking a random number from 0-8, and taking a minimum value of 2. I then ran it using the jsverify framework for random input sizes, and compared if the algorithm was getting a better than average path length of 5 times input size. This was a very rough way to do this, but it gave me a general idea. There were small improvements for each power of the input I ran the randomization scheme, and I felt $|V|^4$ ran in a reasonable amount of time, and gave decent benefits, with many of the estimates being about three-quarters the size of the rough average of 5 times graph length. That is what I chose as my final termination condition.
+Got this done now, I think. Conferring with classmates, I settled on my ending condition being to run the randomized path portion of the algorithm a number of times related to the size of the input. I tested values from $|V|^2$ to $|V|^9$, and the algorithm didn't seem to got a relatively better answer with acceptable runtime up to input size 37. I generated weights on my graphs of between 2-8, so the average path length would be about 5. It would be a little more because the the two is three times as heavily weighted as the other numbers, as I'm actually taking a random number from 0-8, and taking a minimum value of 2. I then ran it using the jsverify framework for random input sizes, and compared if the algorithm was getting a better than average path length of 5 times input size. This was a very rough way to do this, but it gave me a general idea. There were small improvements for each power of the input I ran the randomization scheme, and I felt $|V|^3$ ran in a reasonable amount of time, and gave decent benefits, with many of the estimates being about three-quarters the size of the rough average of 5 times graph length. That is what I chose as my final termination condition.
 
 To randomize the indexes being shuffled, I simply picked two random indexes using Math.floor(Math.random() * pathLength), which gives a number ranging from zero to the pathLength, which works perfectly for an index.
 ## Runtime Analysis
@@ -62,14 +62,14 @@ The steps of my implementation are as follows:
 
 1. Create an ordered path from 1 to $|V|$. Takes $|V|$ time.
 2. Randomize ordered path, using an implementation of the Durstenfeld Shuffle, which has a linear complexity of $|V|$.
-3. Then, for the remainder of the algorithm is in a for loop that runs $|V|^4$ times.
+3. Then, for the remainder of the algorithm is in a for loop that runs $|V|^3$ times.
 4. Run a two randomizations for the indexes, each of which is constant time.
 5. Run array.splice() from one index to the next, which is runtime complexity of up to $O(|V|)$, if the whole list is spliced out.
 6. Run array.reverse() for the spliced array, which is runtime complexity of up to $O(|V|)$, if the whole list is spliced out.
 7. Run array.splice() from one index to the next, which is runtime complexity of up to $O(|V|)$, if the whole list is spliced out.
 8. Go through the path and sum up its value using sumDistance, which is runtime complexity of $\Theta(|V|)$.
 
-So, the overall complexity is ${|V|}^4 * 3O(|V|)+ \Theta(|V|) = O(|V|^5)$
+So, the overall complexity is ${|V|}^3 * 3O(|V|)+ \Theta(|V|) = O(|V|^4)$
 
 ## References
 Grabbed a quick array shuffler algorithm from here for the starting path
