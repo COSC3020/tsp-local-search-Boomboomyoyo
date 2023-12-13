@@ -5,18 +5,41 @@ function tsp_ls(distance_matrix) {
         path.push(i)
     }
     shuffleArray(path)
+    totalAttempts = path.length ** 4
+    previousLength = Infinity
+    pathLength = Infinity
+    for(let c = 0; c < totalAttempts; c++)
+    {
+        index1 = Math.floor(Math.random()*path.length)
+        index2 = Math.floor(Math.random()*path.length)
+        twoOptSwap(path, index1, index2)
+        path = path.flat()
+        pathLength = sumDistance(distance_matrix, path)
+        if(pathLength < previousLength)
+        {
+            previousLength = pathLength
+        }
+    }
+    return pathLength
+}
 
-
-
+function sumDistance(distGraph, pathIndexes)
+{
+    accum = 0
+    for(let i = 0; i < pathIndexes.length-1; i++)
+    {
+        accum += distGraph[pathIndexes[i]][pathIndexes[i+1]]
+    }
+    return accum
 }
 
 function twoOptSwap(route, i, k)
 {
     temp = route.splice(i, k)
     route.splice(i, 0, temp.reverse())
-    console.log(route)
-    route = route.flat(Infinity)
-    console.log(route)
+    //console.log(route)
+    //route = route.flat(Infinity)
+    //console.log(route)
 }
 
 /*
@@ -36,7 +59,7 @@ function shuffleArray(array) {
         array[j] = temp;
     }
 }
-arr = [0,1,2,3,4,5,6]
-twoOptSwap(arr, 2, 4)
+//arr = [0,1,2,3,4,5,6]
+//twoOptSwap(arr, 2, 4)
 //arr = arr.flat()
-console.log(arr)
+//console.log(arr)
