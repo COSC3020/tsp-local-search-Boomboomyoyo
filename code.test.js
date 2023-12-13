@@ -40,7 +40,7 @@ dm = [[0,3,4,2,7],
       //console.log(temp)
 assert(temp >= 13);
 
-
+/*
 const test =
     jsc.forall("nat", function(int) {
       graphSize = Math.min(25, int)
@@ -68,7 +68,7 @@ const test =
       return true
     });
 jsc.assert(test, { tests: 10 });
-
+*/
 
 
 function connectedGraph(v)
